@@ -1,9 +1,9 @@
 ---
-title: TailwindCSS와 Styled-Components
+title: Next.js에서 CSS-in-JS 방식의 문제점
 author: Roen
-date: 2023-08-17 20:10:00 +0800
-categories: [개발, TailwindCSS, React, Styled-Components]
-tags: [TailwindCSS, React, Styled-Components]
+date: 2023-11-03 15:13:00 +0800
+categories: [개발, Next.js, Styled-Components]
+tags: [Next.js, Styled-Components]
 pin: false
 math: true
 mermaid: true

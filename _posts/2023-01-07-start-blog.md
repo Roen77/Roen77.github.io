@@ -7,6 +7,10 @@ tags: [기타]
 pin: false
 math: true
 mermaid: true
+image:
+  path: https://github.com/Roen77/Roen77.github.io/assets/65719512/345d0fba-c3ec-4f09-b68a-56e7f288ef70
+  # lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
+  alt: 시작
 ---
 
 기존에는 무언가를 기록하기 위한 용도로 노선을 사용했었는데, 틈틈이 생각날 때마다 내용을 적다 보니 내용이 파편처럼 흩어져서 정리가 잘되지 않는 느낌이었다.

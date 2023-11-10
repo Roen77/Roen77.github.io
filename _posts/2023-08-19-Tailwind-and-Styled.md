@@ -190,7 +190,8 @@ const Header = styled.header`
 | xl                | 1280px        | (min-width: 1280px) { ... } |
 | 2xl               | 1536px        | (min-width: 1536px) { ... } |
 
-<br/>우리가 사용하는 중단점(Breakpoint)은 990px인데 `TailwindCSS`에서 제공하지 않더라도 커스텀하여 반응형 처리가 가능합니다.
+<br/>
+우리가 사용하는 중단점(Breakpoint)은 990px인데 `TailwindCSS`에서 제공하지 않더라도 커스텀하여 반응형 처리가 가능합니다.
 
 ```tsx
 // tailwindcss.config.js
@@ -247,57 +248,6 @@ function TailwindCSS() {
       </div>
     </div>
   </div>
-  );
-}
-```
-
-<br/>
-
-### 3. hover나 focus 같은 상태 정의
-
-- <b style="font-size:18px">Styled-Components</b>
-
-CSS에서 일반적으로 사용하는 방식으로 `hover` 되었을 때, 스타일링이 가능합니다.
-
-```tsx
-const Header = styled.header`
-  ul.menu {
-    display: flex;
-    color: ${({ theme }) => theme.colors.darkGrary};
-
-    li:hover > a {
-      opacity: 1;
-    }
-    li > a {
-      padding: 20px;
-      opacity: 0.6;
-    }
-  }
-`;
-```
-
-<br/>
-- <b style="font-size:18px">TailwindCSS</b>
-  <br/>
-
-`TailwindCSS`에서 제공해준 규칙대로 지정하여 `hover` 되었을 때, 스타일링이 가능합니다.
-
-```tsx
-function TailwindCSS() {
-  return (
-    <ul className="flex  max-laptop:hidden">
-      {menuList.map((menu, i) => (
-        <li key={i}>
-          <a
-            //hover될때 글자 색상의 opacity를 1로 변경
-            className="p-[20px] text-dark-gray/60 hover:text-dark-gray/100"
-            href="#"
-          >
-            {menu}
-          </a>
-        </li>
-      ))}
-    </ul>
   );
 }
 ```

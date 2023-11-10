@@ -27,3 +27,115 @@ mermaid: true
 {: .prompt-info }
 
 > free Template를 제공해주고 있고, 자주 사용되는 가로 정렬 레이아웃에서 세로 정렬 레이아웃으로 변경되는 반응형이나, 헤더 메뉴 모바일 처리 등 스타일링을 비교하기 적합하다고 판단하여 해당 Template를 참고하게 되었습니다.
+
+### 1. 스타일 정의
+
+- <b style="font-size:18px">Styled-Components</b>
+  <br/>
+  `Styled-Components`는 `CSS-in-JS` 방식으로 스타일링을 주는 방식을 제공합니다.
+  <br/> `CSS-in-JS` 방식은 명칭에서 추측할 수 있듯이 자바스크립트 코드에서 CSS를 작성하는 방식을 말합니다.
+  <br/>템플릿 리터럴을 사용해 CSS를 정의한 자바스크립트 태그를 선언하여 스타일을 정의할 수 있습니다.
+  <br/>
+
+```tsx
+// theme.ts
+
+// 전역적으로 사용할 스타일 테마 설정
+const theme = {
+  fontSizes: {
+    sm: "12px",
+    base: "16px"
+  },
+  letterSpacing: {
+    wide: "0.0625rem",
+    widest: "0.125em"
+  },
+  colors: {
+    white: "#fff",
+    black: "#000",
+    primaryBlack: "#333",
+    darkGray: "#222",
+    buttonBlack: "#1a1b1f"
+  }
+};
+
+// 컴포넌트에서 사용
+import styled, { ThemeProvider } from "styled-components";
+function CSSInJs() {
+  return (
+    // ThemeProvider 로 감싸주어 theme 사용 할 수 있도록 정의
+    <ThemeProvider theme={theme}>
+      <Header>
+        <a className="logo" href="#">
+          Business
+        </a>
+      </Header>
+    </ThemeProvider>
+  );
+}
+
+export default CSSInJs;
+
+// props로 미리 정의된 theme 사용
+const Header = styled.header`
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  letter-spacing: ${({ theme }) => theme.letterSpacing.wide};
+  position: relative;
+`;
+```
+
+위의 예제처럼 미리 공통 테마를 지정해서 스타일을 커스텀하거나 확장시킬 수 있고, props 사용하여 동적으로 스타일을 지정해줄 수 있습니다.
+
+<br/>
+
+- <b style="font-size:18px">TailwindCSS</b>
+
+`TailwindCSS`는 해당 프레임워크에서 제공해주는 클래스 명을 사용하여 스타일을 지정해줄 수 있습니다.
+
+```tsx
+// tailwindcss.config.js
+import type { Config } from "tailwindcss";
+
+// 전역적으로 사용할 스타일 테마 커스텀
+const config: Config = {
+    ...
+  theme: {
+    extend: {
+      padding: {
+        "30": "1.875rem",
+      },
+      colors: {
+        "primary-black": "#333",
+        "dark-gray": "#222",
+        "button-black": "#1a1b1f",
+      },
+      letterSpacing: {
+        wide: "0.0625rem",
+        widest: "0.125em",
+      },
+    },
+  },
+};
+
+export default config;
+
+// 컴포넌트에서 사용
+function TailwindCSS() {
+  return (
+    <header>
+      <a
+        className="font-semibold text-2xl border-b-4 border-b-black tracking-wide"
+        href="#"
+      >
+        Business
+      </a>
+    </header>
+  );
+}
+```
+
+미리 정의된 규칙에 따라 클래스를 결합하여 스타일을 지정해줄 수 있고, 구성 요소를 커스텀하여 새로운 테마를 생성해 결합하여 사용할 수 있습니다.

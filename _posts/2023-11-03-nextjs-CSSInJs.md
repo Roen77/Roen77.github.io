@@ -12,12 +12,12 @@ mermaid: true
 ## 개요
 
 최근에 기존 내용을 다듬고, 코드를 새롭게 정리하는 작업을 진행하고 있습니다.
-<br/>[TailwindCSS와 Styled-Components의 사용법을 비교하는 글](https://roen77.github.io/posts/tailwindcss/)에서 작업했던 내용을 새롭게 Next.js를 사용하여 재작업하는 과정에서 겪은 문제를 정리하기 위해 글을 작성하게 되었습니다.
+<br/>[TailwindCSS와 Styled-Components의 사용법을 비교하는 글](https://roen77.github.io/posts/Tailwind-and-Styled/)에서 작업했던 내용을 새롭게 Next.js를 사용하여 재작업하는 과정에서 겪은 문제를 정리하기 위해 글을 작성하게 되었습니다.
 <Br/>
 
 ## 문제
 
-[TailwindCSS와 Styled-Components의 사용법을 비교하는 글](https://roen77.github.io/posts/tailwindcss/)에서 하나의 웹 페이지를 가각 `TainwindCSS`와 `Styled-Components`
+[TailwindCSS와 Styled-Components의 사용법을 비교하는 글](https://roen77.github.io/posts/Tailwind-and-Styled/)에서 하나의 웹 페이지를 가각 `TainwindCSS`와 `Styled-Components`
 를 사용하여 레아아웃과 스타일링 작업을 진행했습니다.
 <br/>이 때는 React를 사용하여 작업을 진행했기 때문에 별다른 문제는 없었지만, Next.js 프레임워크로 재작업을 진행하면서 `Styled-Components` 라이브러리를 사용했을 때 새로고침시마다 [Flash of Unstyled Content (FOUC) 현상](https://dev.to/lyqht/what-the-fouc-is-happening-flash-of-unstyled-content-413j)이 발생했습니다.
 
@@ -180,24 +180,20 @@ export default function RootLayout({
 
 <br/>실제로 `Styled-Components`를 사용하고 있는 page에서 `"use client"`를 선언해주지않으면 오류가 납니다.
 
-![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/0637dce7-c306-4d77-9a6f-938c6df066c9){: width="972" height="589" }
-
-<!-- https://github.com/Roen77/Roen77.github.io/assets/65719512/0637dce7-c306-4d77-9a6f-938c6df066c9 -->
-
-<!-- <br/>이러한 방법으로 스타일 규칙을 추출하는 것이 효과저 최상위 요소에 `Client Component`를 사용해주기 위해 `"use client"`라고 선언해주어야 합니다. -->
+![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/4385d0f6-b27e-435b-9cae-b625a02b1b28){: width="972" height="589" }
 
 <br/><br/>
 위 방법을 통해 수정 전과 수정 후 화면을 비교한 모습입니다.
 <br/>
 <br/>
 <b style="fontsize:18px">수정 전</b>
-![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/3588031d-ceb7-4b30-97c8-a6c42ce5e534){: width="972" height="589" }
+![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/1c5938e5-f430-49e9-8aa8-c58d4ebee52c){: width="972" height="589" }
 
 - 보다시피 새로고침 시 스타일이 적용되지 않은 날것의 콘텐츠들이 보이는 것을 확인할 수 있습니다.
 
 <br/>
 <b style="fontsize:18px">수정 후</b>
-![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/ad4142b3-3114-4765-8856-68073736cfa7){: width="972" height="589" }
+![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/b1c93f61-d669-4678-a025-be49d88e38b6){: width="972" height="589" }
 
 - 새로고침에도 기존에 적용시킨 스타일이 유지되는 것을 확인할 수 있습니다.
 
@@ -217,7 +213,7 @@ export default function RootLayout({
 
 {: .prompt-info }
 
-> [연관된 글 참고](https://roen77.github.io/posts/tailwindcss/)
+> [연관된 글 참고](https://roen77.github.io/posts/Tailwind-and-Styled/)
 
 <br/>
 <span style="background-color:#E3F2FD; padding:4px; border-radius:2px;">주석</span>

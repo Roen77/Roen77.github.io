@@ -180,7 +180,7 @@ const Header = styled.header`
 
 - <b style="font-size:18px">TailwindCSS</b>
 
-[`TailwindCSS`에서 제공해주는 기능](https://tailwindcss.com/docs/responsive-design#using-custom-breakpoints)으로 미디어 쿼리를 사용할 수 있습니다.
+[TailwindCSS에서 제공해주는 기능](https://tailwindcss.com/docs/responsive-design#using-custom-breakpoints)으로 미디어 쿼리를 사용할 수 있습니다.
 
 | Breakpoint prefix | Minimum width |                         CSS |
 | :---------------- | :------------ | --------------------------: |
@@ -375,10 +375,6 @@ function TailwindCSS() {
 </table>
 
 <br/>
-
-성능에 관해서는 각각 공식 문서를 참고하여 정리했습니다.
-<br/>
-<br/>
 <b>성능</b>
 
 <table>
@@ -404,6 +400,8 @@ function TailwindCSS() {
     </tr>
   </tbody>
 </table>
+
+> 성능에 관해서는 각각 공식 문서를 참고하여 정리했습니다.
 
 <br/>
 실제 업무에서 `Styled-Components` 나 `Emotion` 라이브러리를 사용하여 `CSS-in-JS`방식으로 작업을 해 왔는데요.

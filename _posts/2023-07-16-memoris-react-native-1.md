@@ -200,13 +200,13 @@ ProductList 컴포넌트에서 처음 10개의 데이터를 불러왔을 때와,
 
 - <b>처음 10개의 데이터를 불러왔을 때</b>
 
-  ![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/cb55594a-85f0-4a0a-a162-df25c21a2293){: width="500" height="589" }
+  ![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/1b9b8361-213f-4ae2-bbac-d2e288cdd28f){: width="500" height="589" }
 
 <br/>
 
 - <b>다음 10개의 데이터를 불러왔을 때</b>
 
-  ![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/7877283e-46fe-4144-8273-6234dafe704e){: width="500" height="589" }
+  ![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/81a338b0-597b-4eb5-8c1d-321c82aa569d){: width="500" height="589" }
 
 <Br/>
 처음 10개의 데이터를 불러온 이후, 다음 10개의 데이터를 불러와서 리스트의 아이템이 추가되었을때도, 다시 모든 리스트의 아이템이 리랜더링되는 것을 확인 할 수 있다. 불필요하게 리랜더링되는 아이템을 어떻게 하면 최적화할 수 있을까?
@@ -251,7 +251,7 @@ export default React.memo(ProductItem);
 ProductItem 에서는 props인 item이 변경될때만 리랜더링 될 수 있도록 React의 memo로 감싸주고, ProductList 컴포넌트에서는 useCallback으로 감싸주어 랜더링 시 함수가 다시 생성되는 것을 방지했다.
 <br/> 그 결과, 리스트 아이템이 추가 될 때, 모든 아이템이 리랜더링 되는 것이 아닌 추가된 아이템만 랜더링 된 것을 확인할 수 있다.
 
-![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/ffbf6a67-f397-424d-812a-309ef4af71a0){: width="500" height="589" }
+![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/cf2b0dd5-bcc7-4720-b04e-848108e4f3f1){: width="500" height="589" }
 
 <br/>
 

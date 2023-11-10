@@ -146,3 +146,36 @@ function TailwindCSS() {
 - <b style="font-size:18px;">Styled-Components</b>
 
 일반적인 [미디어 쿼리](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_media_queries/Using_media_queries)를 사용해 중단점(Breakpoint)을 지정하여 반응형 처리를 할 수 있습니다.
+
+```tsx
+const Header = styled.header`
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  letter-spacing: ${({ theme }) => theme.letterSpacing.wide};
+  position: relative;
+
+  .contact-button {
+    padding: 12px 25px;
+    background: ${({ theme }) => theme.colors.buttonBlack};
+    color: ${({ theme }) => theme.colors.white};
+    letter-spacing: ${({ theme }) => theme.letterSpacing.widest};
+  }
+  // 화면이 990px보다 작아질경우 지정할 스타일
+  @media screen and (max-width: 990px) {
+    ul.menu,
+    .contact-button {
+      display: none;
+    }
+    .mobile-button {
+      display: block;
+    }
+  }
+`;
+```
+
+<br/>
+
+- <b style="font-size:18px">TailwindCSS</b>

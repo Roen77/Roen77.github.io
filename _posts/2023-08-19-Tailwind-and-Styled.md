@@ -31,11 +31,11 @@ mermaid: true
 ### 1. 스타일 정의
 
 - <b style="font-size:18px">Styled-Components</b>
-  <br/>
-  `Styled-Components`는 `CSS-in-JS` 방식으로 스타일링을 주는 방식을 제공합니다.
-  <br/> `CSS-in-JS` 방식은 명칭에서 추측할 수 있듯이 자바스크립트 코드에서 CSS를 작성하는 방식을 말합니다.
-  <br/>템플릿 리터럴을 사용해 CSS를 정의한 자바스크립트 태그를 선언하여 스타일을 정의할 수 있습니다.
-  <br/>
+
+`Styled-Components`는 `CSS-in-JS` 방식으로 스타일링을 주는 방식을 제공합니다.
+<br/>`CSS-in-JS` 방식은 명칭에서 추측할 수 있듯이 자바스크립트 코드에서 CSS를 작성하는 방식을 말합니다.
+<br/>템플릿 리터럴을 사용해 CSS를 정의한 자바스크립트 태그를 선언하여 스타일을 정의할 수 있습니다.
+<br/>
 
 ```tsx
 // theme.ts
@@ -139,3 +139,165 @@ function TailwindCSS() {
 ```
 
 미리 정의된 규칙에 따라 클래스를 결합하여 스타일을 지정해줄 수 있고, 구성 요소를 커스텀하여 새로운 테마를 생성해 결합하여 사용할 수 있습니다.
+<br/>
+
+### 2. 반응형
+
+- <b style="font-size:18px">Styled-Components</b>
+  <br/>
+  일반적인 [미디어 쿼리](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_media_queries/Using_media_queries)를 사용해 중단점(Breakpoint)을 지정하여 반응형 처리를 할 수 있습니다.
+
+```ts
+const Header = styled.header`
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  letter-spacing: ${({ theme }) => theme.letterSpacing.wide};
+  position: relative;
+
+  .contact-button {
+    padding: 12px 25px;
+    background: ${({ theme }) => theme.colors.buttonBlack};
+    color: ${({ theme }) => theme.colors.white};
+    letter-spacing: ${({ theme }) => theme.letterSpacing.widest};
+  }
+  // 화면이 990px보다 작아질경우 지정할 스타일
+  @media screen and (max-width: 990px) {
+    ul.menu,
+    .contact-button {
+      display: none;
+    }
+    .mobile-button {
+      display: block;
+    }
+  }
+`;
+```
+
+<br/>
+
+- <b style="font-size:18px">TailwindCSS</b>
+
+[`TailwindCSS`에서 제공해주는 기능]()으로 미디어 쿼리를 사용할 수 있습니다.
+
+| Breakpoint prefix | Minimum width |                         CSS |
+| :---------------- | :------------ | --------------------------: |
+| sm                | 640px         |  (min-width: 640px) { ... } |
+| md                | 768px         |  (min-width: 768px) { ... } |
+| lg                | 1024px        | (min-width: 1024px) { ... } |
+| xl                | 1280px        | (min-width: 1280px) { ... } |
+| 2xl               | 1536px        | (min-width: 1536px) { ... } |
+
+<br/>우리가 사용하는 중단점(Breakpoint)은 990px인데 `TailwindCSS`에서 제공하지 않더라도 커스텀하여 반응형 처리가 가능합니다.
+
+```tsx
+// tailwindcss.config.js
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+    ...
+  theme: {
+    // screen  중단점(Breakpoint) 지정
+    screens: {
+      tablet: "640px",
+      // => @media (min-width: 640px) { ... }
+
+      laptop: "990px",
+      // => @media (min-width: 990px) { ... }
+
+      desktop: "1280px",
+      // => @media (min-width: 1280px) { ... }
+    },
+  },
+};
+
+export default config;
+
+
+// 컴포넌트에서 사용
+function TailwindCSS() {
+  return (
+// 화면이 990px 이하일 경우, flex-direction: column으로 수직 정렬, 그 이상일 경우 flex-direction: row로 수평 정렬
+  <div className="flex laptop:flex-row flex-col py-30 gap-2">
+    <div className="basis-1 laptop:basis-1/3">
+      <h3 className="font-bold text-4xl py-5">Three Col 1</h3>
+      <div>
+        desktop publishing packages and web page editors now use Lorem
+        Ipsum as their default model text, and a search for lorem ipsum
+        will uncover many web sites still in their infancy.
+      </div>
+    </div>
+    <div className="basis-1 laptop:basis-1/3">
+      <h3 className="font-bold text-4xl py-5">Three Col 2</h3>
+      <div>
+        Various versions have evolved over the years, sometimes by
+        accident, sometimes on purpose (injected humour and the like).
+      </div>
+    </div>
+    <div className="basis-1 laptop:basis-1/3">
+      <h3 className="font-bold text-4xl py-5">Three Col 3</h3>
+      <div>
+        It is a long established fact that a reader will be distracted
+        by the readable content of a page when looking at its layout.
+        The point of using Lorem Ipsum is that it has a more-or-less
+        normal distribution of letters, as opposed to using Content here
+        content here
+      </div>
+    </div>
+  </div>
+  );
+}
+```
+
+<br/>
+
+### 3. hover나 focus 같은 상태 정의
+
+- <b style="font-size:18px">Styled-Components</b>
+
+CSS에서 일반적으로 사용하는 방식으로 `hover` 되었을 때, 스타일링이 가능합니다.
+
+```tsx
+const Header = styled.header`
+  ul.menu {
+    display: flex;
+    color: ${({ theme }) => theme.colors.darkGrary};
+
+    li:hover > a {
+      opacity: 1;
+    }
+    li > a {
+      padding: 20px;
+      opacity: 0.6;
+    }
+  }
+`;
+```
+
+<br/>
+- <b style="font-size:18px">TailwindCSS</b>
+  <br/>
+
+`TailwindCSS`에서 제공해준 규칙대로 지정하여 `hover` 되었을 때, 스타일링이 가능합니다.
+
+```tsx
+function TailwindCSS() {
+  return (
+    <ul className="flex  max-laptop:hidden">
+      {menuList.map((menu, i) => (
+        <li key={i}>
+          <a
+            //hover될때 글자 색상의 opacity를 1로 변경
+            className="p-[20px] text-dark-gray/60 hover:text-dark-gray/100"
+            href="#"
+          >
+            {menu}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+```

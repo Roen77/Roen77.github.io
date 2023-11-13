@@ -279,6 +279,33 @@ ProductItem 에서는 props인 item이 변경될때만 리랜더링 될 수 있�
 
 <br/>
 실제 업무에서 사용했던 방법 위주로 React Native에서 리스트의 성능 최적화를 하는 방법에 대해 정리해보았다.
+<br/> 실질적으로 얼마나 성능이 최적화가 되었는지 `React DevTools`를 사용해 퍼포먼스를 측정해보았다.
+
+- <b>ScrollView 사용(FlatList 사용 X)</b>
+
+  ![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/64e69e83-0897-4ea4-88a8-784267b90485){: width="800" height="400" }
+
+<br/>
+
+- <b>FlatList 사용</b>
+
+![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/0ebfaa9f-53c8-443a-aa74-3df106464c3d){: width="400" height="200" }
+![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/a98274f9-2cb2-4724-b18b-de9946e0a8df){: width="400" height="200" }
+
+ScrollView는 리스트의 모든 데이터를 한꺼번에 보여주기 때문에 랜더링 시간이 `85.9ms` 걸린 것을 확인 할 수 있다.
+<br/>FlatList를 사용했을 경우, 내부적으로
+VirturalizedList로 화면에 보이는 리스트 목록만 랜더링하기 때문에 랜더링 시간이 `17.6ms`으로 ScrollView를 사용했을 때와 비교해보면 대폭 줄어들었다.
+
+<br/>
+
+- <b>FlatList 사용 + FlatList 최적화</b>
+
+![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/7d01ce1c-c91b-4e04-8b04-c353e36438ce){: width="400" height="200" }
+![Desktop View](https://github.com/Roen77/Roen77.github.io/assets/65719512/b03f897a-ef7a-4f60-b984-7dccd2081600){: width="400" height="200" }
+
+FlatList를 사용하고 성능 개선 작업을 진행했을 경우에는 랜더링 시간이 `2.9ms` 로, 랜더링 시간이 훨씬 줄어든 것을 확인할 수 있다.
+
+<br/>
 
 ## 3. ios 환경에서 스크롤 막대가 가운데로 오는 이슈
 
@@ -299,8 +326,8 @@ ios에서 스크롤이 존재하는 A화면에서 다른 화면으로 갔다가 
 ```tsx
 <FlatList
   scrollIndicatorInsets={ㅤ{ right: 0.1 }}
-  style={{ backgroundColor: theme.bg }}
-  contentContainerStyle={{ paddingBottom: vw(100) }}
+  style={ㅤ{ backgroundColor: theme.bg }}
+  contentContainerStyle={ㅤ{ paddingBottom: vw(100) }}
   ListEmptyComponent={
     <NullContentBox>
       <Photo
